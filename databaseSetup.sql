@@ -14,7 +14,7 @@ CREATE TABLE pets (
 
 CREATE TABLE visits (
  id SERIAL PRIMARY KEY,
- check_in_date date not null,
- check_out_date date,
+ check_in_date TIMESTAMP DEFAULT TIMESTAMP 'now()',
+ check_out_date date DEFAULT NULL,
  pet_id int REFERENCES pets
 );
