@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  console.log('js loaded');
   addClickHandlers();
   refreshPets();
 }); // end of document.ready
