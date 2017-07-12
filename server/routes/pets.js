@@ -18,7 +18,7 @@ router.get('/', function(req,res){
             console.log('There was an error making the SELECT query', errMakingQuery);
             res.sendStatus(500);
           } else {
-            res.send(result.rows);
+            res.send({pets: result.rows});
           }
         });
       }

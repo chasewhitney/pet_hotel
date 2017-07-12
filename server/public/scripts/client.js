@@ -24,13 +24,15 @@ function refreshPets() {
 
 // this function fills in page
 function appendToDom(pets) {
+  console.log('APD called');
   // clear current div
   // big for loop that loops through data and appends to correct positions in DOM
   for(var i = 0; i < pets.length; i+= 1) {
     var pet = pets[i];
     var $tr = $('<tr data-petid="' + pet.id + '"></tr>');
     // $tr.data('pet', pet);
-    $tr.append('<td>' + pet.owner.first_name + ' ' + pet.owner.last_name + '</td>');
+
+    $tr.append('<td>' + pet.first_name + ' ' + pet.last_name + '</td>');
     $tr.append('<td>' + pet.name + '</td>');
     $tr.append('<td>' + pet.breed + '</td>');
     $tr.append('<td>' + pet.breed + '</td>');
@@ -43,7 +45,8 @@ function appendToDom(pets) {
     }
     else {
       $tr.append('<td><button class= "checkBtn" data-petid="'+ pet.id +'">Check Out</button></td>');
-    $('#petTable').append($tr);
     }
+    $('#petTable').append($tr);
+    console.log($tr);
   }
 }
