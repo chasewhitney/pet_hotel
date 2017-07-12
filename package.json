@@ -1,0 +1,24 @@
+{
+  "name": "pet_hotel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chasewhitney/pet_hotel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chasewhitney/pet_hotel/issues"
+  },
+  "homepage": "https://github.com/chasewhitney/pet_hotel#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "pg": "^6.4.0"
+  }
+}
