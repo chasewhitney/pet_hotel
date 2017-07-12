@@ -11,9 +11,8 @@ router.get('/', function(req,res){
         console.log('There was an error connecting to the database', errConnectingToDatabase);
         res.sendStatus(500);
       } else {
-        db.query('SELECT owner_id, pet_id, first_name, last_name, name, breed, color, check_in_date, check_out_date'
-        + 'FROM owners JOIN pets on pets.owner_id = owners.id' +
-        'JOIN visits on pets.id = visits.pet_id;'), function(errMakingQuery, result){
+        queryText = 'SELECT owner_id, pet_id, first_name, last_name, name, breed, color, check_in_date, check_out_date from owners JOIN pets on pets.owner_id = owners.id JOIN visits on pets.id = visits.pet_id;';
+        db.query(queryText, function(errMakingQuery, result){
           done();
           if(errMakingQuery) {
             console.log('There was an error making the SELECT query', errMakingQuery);
@@ -21,7 +20,7 @@ router.get('/', function(req,res){
           } else {
             res.send(result.rows);
           }
-        };
+        });
       }
     });
 });
