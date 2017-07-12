@@ -24,7 +24,6 @@ function refreshPets() {
 // this function fills in page
 function appendToDom(pets) {
   // clear current div
-
   // big for loop that loops through data and appends to correct positions in DOM
   for(var i = 0; i < pets.length; i+= 1) {
     var pet = pets[i];
@@ -36,18 +35,14 @@ function appendToDom(pets) {
     $tr.append('<td>' + pet.breed + '</td>');
     $tr.append('<td>' + pet.color + '</td>');
     // remember to create click listener for Go that selects petid
-    $tr.append('<button>Go' + pet.color + '</td>');
-    // if pet is already complete just add Delete button
-    if(pet.status == "complete") {
-      $tr.append('<td><button class= "deleteBtn" data-petid="'+ pet.id +'">Delete</button></td>');
-      $('#petTable').append($tr);
+    $tr.append('<td><button data-petid="' + pet.id + '">Go</button></td>');
+    $tr.append('<td><button class= "deleteBtn" data-petid="'+ pet.id +'">Delete</button></td>');
+    if(pet.check_in_date === null) {
+      $tr.append('<td><button class= "checkBtn" data-petid="'+ pet.id +'">Check In</button></td>');
     }
-    // otherwise add Done and Delete button
     else {
-      $tr.append('<td><button class="mark ' + pet.status + '">Done</button>' +
-      '<button class= "deleteBtn" data-petid="'+ pet.id +'">Delete</button></td>');
-      //  incomplete pets go to top of table
-      $('#petList').prepend($tr);
-
-
+      $tr.append('<td><button class= "checkBtn" data-petid="'+ pet.id +'">Check Out</button></td>');
+    $('#petTable').append($tr);
+    }
+  }
 }
