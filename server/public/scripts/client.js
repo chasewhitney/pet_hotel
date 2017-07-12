@@ -30,7 +30,13 @@ function appendToDom(pets) {
     var pet = pets[i];
     var $tr = $('<tr data-petid="' + pet.id + '"></tr>');
     // $tr.data('pet', pet);
-    $tr.append('<td class="pet ' + pet.status + '">' + pet.pets + '</td>');
+    $tr.append('<td>' + pet.owner.first_name + ' ' + pet.owner.last_name + '</td>');
+    $tr.append('<td>' + pet.name + '</td>');
+    $tr.append('<td>' + pet.breed + '</td>');
+    $tr.append('<td>' + pet.breed + '</td>');
+    $tr.append('<td>' + pet.color + '</td>');
+    // remember to create click listener for Go that selects petid
+    $tr.append('<button>Go' + pet.color + '</td>');
     // if pet is already complete just add Delete button
     if(pet.status == "complete") {
       $tr.append('<td><button class= "deleteBtn" data-petid="'+ pet.id +'">Delete</button></td>');
