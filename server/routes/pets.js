@@ -81,8 +81,8 @@ router.delete('/:id', function(req, res){
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
-      // We connected to the database!!!
-      // Now we're going to GET things from the db
+  //this queryText does not work because it is attempted to delete a pet
+  //that is referenced in the visits table
       var queryText = 'DELETE FROM pets WHERE id = $1;';
       // errorMakingQuery is a bool, result is an object
       db.query(queryText, [id], function(errorMakingQuery, result){
