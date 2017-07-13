@@ -1,7 +1,33 @@
+<<<<<<< HEAD
 #main {
   background-color: lightgray;
 }
 
 #ownerRegistration {
+=======
+h1 {
+  display: inline-block;
+}
+
+#main {
+  background-color: lightgray;
+  display: inline-block;
+  margin: inherit;
+  width: 700px;
+}
+
+#ownerRegistration {
+  background-color: lightyellow;
+  height: auto;
+  width: 600px;
+  margin-left: 50px;
+}
+
+#pets {
+  background-color: lightyellow;
+  height: auto;
+  width: 600px;
+  margin-left: 50px;
+>>>>>>> feature-css
 
 }
