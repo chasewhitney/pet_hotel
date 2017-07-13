@@ -48,12 +48,12 @@ function refreshPets() {
 
 // this function fills in table
 function appendToDom(pets) {
-  console.log('APD called');
+  console.log('APD called, pets:', pets);
   // clear current div
   // big for loop that loops through data and appends to correct positions in DOM
   for(var i = 0; i < pets.length; i+= 1) {
     var pet = pets[i];
-    var $tr = $('<tr data-petid="' + pet.id + '"></tr>');
+    var $tr = $('<tr data-petid="' + pet.id + '" data-ownerid ="' + pet.owner_id + '" ></tr>');
     // for each pet row append Owner, Pet Name, Breed, Color, and three buttons -- Update, Delete, Check In/Out
     $tr.append('<td>' + pet.first_name + ' ' + pet.last_name + '</td>');
     $tr.append('<td><div contenteditable>' + pet.name + '</div></td>');
