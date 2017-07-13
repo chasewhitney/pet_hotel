@@ -4,6 +4,49 @@ var router = express.Router();
 var poolModule = require('../modules/pool.js');
 var pool = poolModule;
 
+//post for pet owner name inputs
+router.post('/', function(req, res){
+  console.log('in post route', req.body);
+  pool.connect(function(errConnectingToDatabase, db, done){
+    if(errConnectingToDatabase) {
+      console.log('There was an error connecting to the database', errConnectingToDatabase);
+      res.sendStatus(500);
+    } else {
+      db.query('INSERT INTO tasks (name) VALUES ($1)', [], function(errMakingQuery, result){
+        done();
+        if(errMakingQuery) {
+          console.log('There was an error making the INSERT query', errMakingQuery);
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(201);
+        }
+      });
+    }
+  });//end of pool
+});//end of post
+
+//post for pet name, color, breed inputs
+router.post('/', function(req, res){
+  console.log('in post route', req.body);
+  pool.connect(function(errConnectingToDatabase, db, done){
+    if(errConnectingToDatabase) {
+      console.log('There was an error connecting to the database', errConnectingToDatabase);
+      res.sendStatus(500);
+    } else {
+      db.query('INSERT INTO tasks (name) VALUES ($1)', [], function(errMakingQuery, result){
+        done();
+        if(errMakingQuery) {
+          console.log('There was an error making the INSERT query', errMakingQuery);
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(201);
+        }
+      });
+    }
+  });//end of pool
+});//end of post
+
+//get for the pet information --- populates table on DOM
 router.get('/', function(req,res){
   console.log('in get pets route');
     pool.connect(function(errConnectingToDatabase, db, done){
@@ -23,6 +66,6 @@ router.get('/', function(req,res){
         });
       }
     });
-});
+}); //end of get
 
 module.exports = router;
