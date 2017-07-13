@@ -9,22 +9,38 @@ h2 {
 #main {
   background-color: lightgray;
   display: inline-block;
-  margin: inherit;
-  width: 700px;
+  margin: center;
+  width: 1000px;
+  height: 500px;
 }
 
 #ownerRegistration {
   background-color: lightyellow;
   height: auto;
-  width: 600px;
-  margin-left: 50px;
-  padding-bottom: 10px;
+  width: 800px;
+  margin-left: 100px;
+  padding-bottom: 30px;
 }
 
 #pets {
   background-color: lightyellow;
   height: auto;
-  width: 600px;
-  margin-left: 50px;
-  padding-bottom: 10px;
+  width: 800px;
+  margin-left: 100px;
+  padding-bottom: 30px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 800px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-left: 100px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 3px;
+    text-align: center;
 }
