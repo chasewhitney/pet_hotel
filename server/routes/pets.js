@@ -101,4 +101,51 @@ router.delete('/:id', function(req, res){
   }); // end pool
 });
 
+//UPDATE aka put route for Pets - edit
+router.put('/:id', function(req, res){
+  var id = req.params.id;
+  var pet = req.body;
+  console.log('in put route', req.params);
+  pool.connect(function(errConnectingToDatabase, db, done){
+    if(errConnectingToDatabase) {
+      console.log('There was an error connecting to the database', errConnectingToDatabase);
+      res.sendStatus(500);
+    } else {
+      var queryText = 'UPDATE pets SET "name" = $1, "breed" = $2, "color" = $3 WHERE "id" = $4;';
+      db.query(queryText, [pets.name, pets.color, pets.breed, id], function(errMakingQuery, result){
+        done();
+        if(errMakingQuery) {
+          console.log('There was an error making the INSERT query', errMakingQuery);
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(200);
+        }
+      });
+    }
+  });
+});
+
+
+//UPDATE aka put route for Visit - edit
+// router.put('visit/:id', function(req, res){
+//   console.log('in put route', req.params);
+//   pool.connect(function(errConnectingToDatabase, db, done){
+//     if(errConnectingToDatabase) {
+//       console.log('There was an error connecting to the database', errConnectingToDatabase);
+//       res.sendStatus(500);
+//     } else {
+//       var queryText = 'UPDATE pets SET "name" = $1, "breed" = $2, "color" = $3 WHERE "id" = $4;';
+//       db.query(queryText, [req.params.id], function(errMakingQuery, result){
+//         done();
+//         if(errMakingQuery) {
+//           console.log('There was an error making the INSERT query', errMakingQuery);
+//           res.sendStatus(500);
+//         } else {
+//           res.sendStatus(200);
+//         }
+//       });
+//     }
+//   });
+// });
+
 module.exports = router;

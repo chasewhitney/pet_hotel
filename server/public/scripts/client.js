@@ -32,9 +32,18 @@ function addClickHandlers() {
    });
 
    //edit
+   $('#petTable').on('click', '.updateBtn', function(){
+
+     editPet(deleteId);
+   });
+
 
    //delete
-
+   $('#petTable').on('click', '.deleteBtn', function(){
+     var deleteId = $(this).data('petid');
+     console.log('delete id:', deleteId);
+     deletePet(deleteId);
+   });
    //check-in
 
    //check-out
@@ -87,30 +96,55 @@ function appendToDom(pets) {
   // big for loop that loops through data and appends to correct positions in DOM
   for(var i = 0; i < pets.length; i+= 1) {
     var pet = pets[i];
-    var $tr = $('<tr data-petid="' + pet.id + '" data-ownerid ="' + pet.owner_id + '" ></tr>');
+    var $tr = $('<tr data-petid="' + pet.pet_id + '" data-ownerid ="' + pet.owner_id + '" ></tr>');
     // for each pet row append Owner, Pet Name, Breed, Color, and three buttons -- Update, Delete, Check In/Out
     $tr.append('<td>' + pet.first_name + ' ' + pet.last_name + '</td>');
     $tr.append('<td><div contenteditable>' + pet.name + '</div></td>');
     $tr.append('<td><div contenteditable>' + pet.breed + '</div></td>');
     $tr.append('<td><div contenteditable>' + pet.color + '</div></td>');
     // remember to create click listener for Go that selects petid
-    $tr.append('<td><button class="updateBtn" data-petid="' + pet.id + '">Go</button></td>');
-    $tr.append('<td><button class= "deleteBtn" data-petid="'+ pet.id +'">Delete</button></td>');
+    $tr.append('<td><button class="updateBtn" data-petid="' + pet.pet_id + '">Go</button></td>');
+    $tr.append('<td><button class="deleteBtn" data-petid="'+ pet.pet_id +'">Delete</button></td>');
     if(pet.check_in_date === null) {
-      $tr.append('<td><button class= "checkBtn" data-petid="'+ pet.id +'">Check In</button></td>');
+      $tr.append('<td><button class= "checkBtn" data-petid="'+ pet.pet_id +'">Check In</button></td>');
     }
     else {
-      $tr.append('<td><button class= "checkBtn" data-petid="'+ pet.id +'">Check Out</button></td>');
+      $tr.append('<td><button class= "checkBtn" data-petid="'+ pet.pet_id +'">Check Out</button></td>');
     }
     $('#petTable').append($tr);
+    $('select').append('<option>' + pet.first_name + ' ' + pet.last_name + '</option>');
     console.log($tr);
   }
 }
 
-
 //edit
+// UPDATE a.k.a. PUT
+function editPet(petId) {
+  $.ajax({
+    type: 'PUT',
+    url: '/pets/' + petId,
+    data: petId,
+    success: function(response) {
+      console.log("Put response", response);
+      refreshPets();
+    }
+  });
+}
 
-//delete
+// DELETE
+function deletePet(petId) {
+  // When using URL params, your url would be...
+  // '/tasks/' + bookId
+  // YOUR AJAX CODE HERE
+  $.ajax({
+    type: 'DELETE',
+    url: '/pets/' + petId,
+    success: function(response) {
+      console.log("Delete response", response);
+      refreshPets();
+    }
+  });
+}
 
 //check-in
 
