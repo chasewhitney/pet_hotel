@@ -30,13 +30,11 @@ function appendToDom(pets) {
   for(var i = 0; i < pets.length; i+= 1) {
     var pet = pets[i];
     var $tr = $('<tr data-petid="' + pet.id + '"></tr>');
-    // $tr.data('pet', pet);
-
+    // for each pet row append Owner, Pet Name, Breed, Color, and three buttons -- Update, Delete, Check In/Out
     $tr.append('<td>' + pet.first_name + ' ' + pet.last_name + '</td>');
-    $tr.append('<td>' + pet.name + '</td>');
-    $tr.append('<td>' + pet.breed + '</td>');
-    $tr.append('<td>' + pet.breed + '</td>');
-    $tr.append('<td>' + pet.color + '</td>');
+    $tr.append('<td><div contenteditable>' + pet.name + '</div></td>');
+    $tr.append('<td><div contenteditable>' + pet.breed + '</div></td>');
+    $tr.append('<td><div contenteditable>' + pet.color + '</div></td>');
     // remember to create click listener for Go that selects petid
     $tr.append('<td><button data-petid="' + pet.id + '">Go</button></td>');
     $tr.append('<td><button class= "deleteBtn" data-petid="'+ pet.id +'">Delete</button></td>');
