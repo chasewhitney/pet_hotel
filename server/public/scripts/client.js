@@ -7,8 +7,32 @@ $(document).ready(function() {
 // route is /pets
 
 function addClickHandlers() {
-
+ // listen for add owner button and call addPet(petToAdd);
+ $('#register').on('click', function() {
+  // var petId = $(this).parent().parent().data('taskid');
+  var newOwner = {};
+  newOwner.first_name = $('#firstName').val();
+  newOwner.last_name = $('#lastName').val();
+  addOwner(newOwner);
+  console.log('Register button clicked, newOwner:', newOwner);
+  $('#ownerRegistration').val('');
+  });
 }
+
+// CREATE a.k.a. POST a.k.a. INSERT
+function addOwner(ownerToAdd) {
+  $.ajax({
+    type: 'POST',
+    url: '/pets/owner',
+    data: ownerToAdd,
+    success: function(response) {
+      console.log('Response from server.');
+    }
+  });
+} // end of addPet
+
+// for addOwner remember to seperate first and last name before sending to server
+
 
 // READ a.k.a. GET a.k.a. SELECT
 function refreshPets() {
@@ -22,7 +46,7 @@ function refreshPets() {
   });
 } // end of refreshPets
 
-// this function fills in page
+// this function fills in table
 function appendToDom(pets) {
   console.log('APD called');
   // clear current div
@@ -36,7 +60,7 @@ function appendToDom(pets) {
     $tr.append('<td><div contenteditable>' + pet.breed + '</div></td>');
     $tr.append('<td><div contenteditable>' + pet.color + '</div></td>');
     // remember to create click listener for Go that selects petid
-    $tr.append('<td><button data-petid="' + pet.id + '">Go</button></td>');
+    $tr.append('<td><button class="updateBtn" data-petid="' + pet.id + '">Go</button></td>');
     $tr.append('<td><button class= "deleteBtn" data-petid="'+ pet.id +'">Delete</button></td>');
     if(pet.check_in_date === null) {
       $tr.append('<td><button class= "checkBtn" data-petid="'+ pet.id +'">Check In</button></td>');
