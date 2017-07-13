@@ -7,7 +7,7 @@ $(document).ready(function() {
 // route is /pets
 
 function addClickHandlers() {
- // listen for add owner button and call addPet(petToAdd);
+ // listen for add owner button and call addOwner(petToAdd);
  $('#register').on('click', function() {
   // var petId = $(this).parent().parent().data('taskid');
   var newOwner = {};
@@ -17,6 +17,19 @@ function addClickHandlers() {
   console.log('Register button clicked, newOwner:', newOwner);
   $('#ownerRegistration').val('');
   });
+
+  // listen for add pet button and call addPet(petToAdd);
+  $('#addPet').on('click', function() {
+   // var petId = $(this).parent().parent().data('taskid');
+   var newOwner = {};
+   newOwner.owner = $('ownerName').val();
+   newOwner.name = $('#petName').val();
+   newOwner.breed = $('#petBreed').val();
+   newOwner.color = $('#petColor').val();
+   addOwner(newOwner);
+   console.log('Register button clicked, newPet:', newOwner);
+   $('#pets').val('');
+   });
 }
 
 // CREATE a.k.a. POST a.k.a. INSERT
@@ -29,10 +42,19 @@ function addOwner(ownerToAdd) {
       console.log('Response from server.');
     }
   });
+} // end of addOwner
+
+// CREATE a.k.a. POST a.k.a. INSERT
+function addPet(petToAdd) {
+  $.ajax({
+    type: 'POST',
+    url: '/pets',
+    data: petToAdd,
+    success: function(response) {
+      console.log('Response from server.');
+    }
+  });
 } // end of addPet
-
-// for addOwner remember to seperate first and last name before sending to server
-
 
 // READ a.k.a. GET a.k.a. SELECT
 function refreshPets() {
