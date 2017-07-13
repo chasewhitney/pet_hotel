@@ -32,9 +32,17 @@ function addClickHandlers() {
    });
 
    //edit
+   $('#petTable').on('click', '.updateBtn', function(){
+     
+     editPet(deleteId);
+   });
+
 
    //delete
-
+   $('#petTable').on('click', '.deleteBtn', function(){
+     var deleteId = $(this).data('petid');
+     deletePet(deleteId);
+   });
    //check-in
 
    //check-out
