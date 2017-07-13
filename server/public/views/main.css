@@ -19,6 +19,7 @@ h2 {
   height: auto;
   width: 800px;
   margin-left: 100px;
+  padding-top: 10px;
   padding-bottom: 30px;
 }
 
@@ -26,8 +27,20 @@ h2 {
   background-color: lightyellow;
   height: auto;
   width: 800px;
+  margin-top: 20px;
   margin-left: 100px;
+  padding-top: 10px;
   padding-bottom: 30px;
+}
+
+.ownerName {
+  margin: 0 auto;
+  width: 360px;
+}
+
+.petInfo {
+  margin: 0 auto;
+  width: 500px;
 }
 
 table {
