@@ -111,14 +111,39 @@ function appendToDom(pets) {
       $tr.append('<td><button class= "checkBtn" data-petid="'+ pet.id +'">Check Out</button></td>');
     }
     $('#petTable').append($tr);
+    $('select').append('<option>' + pet.first_name + ' ' + pet.last_name + '</option>');
     console.log($tr);
   }
 }
 
-
 //edit
+// UPDATE a.k.a. PUT
+function editPet(petId) {
+  $.ajax({
+    type: 'PUT',
+    url: '/pets/' + petId,
+    data: petId,
+    success: function(response) {
+      console.log("Put response", response);
+      refreshPets();
+    }
+  });
+}
 
-//delete
+// DELETE
+function deletePet(petId) {
+  // When using URL params, your url would be...
+  // '/tasks/' + bookId
+  // YOUR AJAX CODE HERE
+  $.ajax({
+    type: 'DELETE',
+    url: '/pets/' + petId,
+    success: function(response) {
+      console.log("Delete response", response);
+      refreshPets();
+    }
+  });
+}
 
 //check-in
 
