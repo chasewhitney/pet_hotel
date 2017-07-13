@@ -30,6 +30,15 @@ function addClickHandlers() {
    console.log('Register button clicked, newPet:', newOwner);
    $('#pets').val('');
    });
+
+   //edit
+
+   //delete
+
+   //check-in
+
+   //check-out
+
 }
 
 // CREATE a.k.a. POST a.k.a. INSERT
@@ -68,6 +77,9 @@ function refreshPets() {
   });
 } // end of refreshPets
 
+// list functionality
+
+
 // this function fills in table
 function appendToDom(pets) {
   console.log('APD called, pets:', pets);
@@ -94,3 +106,12 @@ function appendToDom(pets) {
     console.log($tr);
   }
 }
+
+
+//edit
+
+//delete
+
+//check-in
+
+//check-out
