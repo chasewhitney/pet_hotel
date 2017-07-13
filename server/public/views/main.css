@@ -1,0 +1,15 @@
+#main {
+  background-color: lightgray;
+}
+
+#ownerRegistration {
+  background-color: lightyellow;
+  height: auto;
+  width: 500px;
+}
+
+#pets {
+  background-color: lightyellow;
+  height: auto;
+  width: 500px;
+}
