@@ -4,15 +4,16 @@ var router = express.Router();
 var poolModule = require('../modules/pool.js');
 var pool = poolModule;
 
-//post for pet owner name inputs
-router.post('/', function(req, res){
+//CREATE aka post for pet owner name inputs
+router.post('/owner', function(req, res){
   console.log('in post route', req.body);
   pool.connect(function(errConnectingToDatabase, db, done){
     if(errConnectingToDatabase) {
       console.log('There was an error connecting to the database', errConnectingToDatabase);
       res.sendStatus(500);
     } else {
-      db.query('INSERT INTO tasks (name) VALUES ($1)', [], function(errMakingQuery, result){
+      var queryText='INSERT INTO pets ("name", "color", "breed", "owner_id") VALUES($1, $2, $3, $4);';
+      db.query(queryText,[pets.name, pets.color, pets.breed, pets.owner_id], function(errMakingQuery, result){
         done();
         if(errMakingQuery) {
           console.log('There was an error making the INSERT query', errMakingQuery);
@@ -67,5 +68,34 @@ router.get('/', function(req,res){
       }
     });
 }); //end of get
+
+//DELETE
+router.delete('/:id', function(req, res){
+  var id = req.params.id; // id of the thing to delete
+  console.log('Delete route called with id of', id);
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+      // We connected to the database!!!
+      // Now we're going to GET things from the db
+      var queryText = '' ;
+      // errorMakingQuery is a bool, result is an object
+      db.query(queryText, [id], function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          res.sendStatus(500);
+        } else {
+          // console.log(result);
+          // Send back the results
+          res.sendStatus(200);
+        }
+      }); // end query
+    } // end if
+  }); // end pool
+});
 
 module.exports = router;
