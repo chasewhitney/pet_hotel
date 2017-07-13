@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-#main {
-  background-color: lightgray;
-}
-
-#ownerRegistration {
-=======
 h1 {
   display: inline-block;
 }
@@ -28,6 +21,4 @@ h1 {
   height: auto;
   width: 600px;
   margin-left: 50px;
->>>>>>> feature-css
-
 }
