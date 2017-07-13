@@ -6,6 +6,7 @@ var pool = poolModule;
 
 //CREATE aka post for pet owner name inputs
 router.post('/owner', function(req, res){
+  var pets = req.body;
   console.log('in post route', req.body);
   pool.connect(function(errConnectingToDatabase, db, done){
     if(errConnectingToDatabase) {
