@@ -6,15 +6,15 @@ var pool = poolModule;
 
 //CREATE aka post for pet owner name inputs
 router.post('/owner', function(req, res){
-  var pets = req.body;
+  var owner = req.body;
   console.log('in post route', req.body);
   pool.connect(function(errConnectingToDatabase, db, done){
     if(errConnectingToDatabase) {
       console.log('There was an error connecting to the database', errConnectingToDatabase);
       res.sendStatus(500);
     } else {
-      var queryText='INSERT INTO pets ("name", "color", "breed", "owner_id") VALUES($1, $2, $3, $4);';
-      db.query(queryText,[pets.name, pets.color, pets.breed, pets.owner_id], function(errMakingQuery, result){
+      var queryText= 'INSERT INTO owners ("first_name", "last_name") VALUES ($1, $2);';
+      db.query(queryText,[owner.first_name, owner.last_name], function(errMakingQuery, result){
         done();
         if(errMakingQuery) {
           console.log('There was an error making the INSERT query', errMakingQuery);
@@ -29,13 +29,15 @@ router.post('/owner', function(req, res){
 
 //post for pet name, color, breed inputs
 router.post('/', function(req, res){
+  var pets= req.body;
   console.log('in post route', req.body);
   pool.connect(function(errConnectingToDatabase, db, done){
     if(errConnectingToDatabase) {
       console.log('There was an error connecting to the database', errConnectingToDatabase);
       res.sendStatus(500);
     } else {
-      db.query('INSERT INTO tasks (name) VALUES ($1)', [], function(errMakingQuery, result){
+      var queryText='INSERT INTO pets ("name", "color", "breed", "owner_id") VALUES($1, $2, $3, $4);';
+      db.query(queryText, [pets.name, pets.color, pets.breed, pets.owner_id], function(errMakingQuery, result){
         done();
         if(errMakingQuery) {
           console.log('There was an error making the INSERT query', errMakingQuery);
@@ -81,7 +83,7 @@ router.delete('/:id', function(req, res){
     } else {
       // We connected to the database!!!
       // Now we're going to GET things from the db
-      var queryText = '' ;
+      var queryText = 'DELETE FROM pets WHERE id = $1;';
       // errorMakingQuery is a bool, result is an object
       db.query(queryText, [id], function(errorMakingQuery, result){
         done();
